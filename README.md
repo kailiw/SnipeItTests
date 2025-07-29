@@ -52,6 +52,12 @@ dotnet add package Microsoft.NET.Test.Sdk
 ```bash
 npx playwright install
 ```
+or
+```bash
+dotnet tool install --global Microsoft.Playwright.CLI
+playwright install
+```
+
 
 ## 🧪 Run Tests
 
