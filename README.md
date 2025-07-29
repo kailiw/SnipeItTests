@@ -34,7 +34,7 @@ SnipeItTests/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://your-repo-url/SnipeItTests.git
+git clone https://github.com/kailiw/SnipeItTests.git
 cd SnipeItTests
 ```
 

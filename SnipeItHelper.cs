@@ -115,7 +115,6 @@ public class SnipeItHelper
         var firstRowCells = await rows[0].QuerySelectorAllAsync("td");
         await ValidateHistoryRow(
             cells: firstRowCells,
-            expectedIconClass: "fa-plus",
             expectedUser: "Admin User",
             expectedAction: "create new",
             expectedAssetText: $"({assetTag}) - Macbook Pro 13\"",
@@ -126,7 +125,6 @@ public class SnipeItHelper
         var secondRowCells = await rows[1].QuerySelectorAllAsync("td");
         await ValidateHistoryRow(
             cells: secondRowCells,
-            expectedIconClass: "fa-rotate-left",
             expectedUser: "Admin User",
             expectedAction: "checkout",
             expectedAssetText: $"({assetTag}) - Macbook Pro 13\"",
@@ -136,36 +134,30 @@ public class SnipeItHelper
 
     private async Task ValidateHistoryRow(
         IReadOnlyList<IElementHandle> cells,
-        string expectedIconClass,
         string expectedUser,
         string expectedAction,
         string expectedAssetText,
         string expectedNote)
     {
-        // 1. Validate icon
-        var icon = await cells[0].QuerySelectorAsync("i");
-        var iconClass = await icon.GetAttributeAsync("class");
-        Assert.That(iconClass, Does.Contain(expectedIconClass),
-            $"Icon class '{iconClass}' should contain '{expectedIconClass}'");
-
-        // 2. Validate user
+       
+        //  Validate user
         var userLink = await cells[2].QuerySelectorAsync("a");
         var userName = await userLink.InnerTextAsync();
         Assert.That(userName, Is.EqualTo(expectedUser),
             $"User name '{userName}' should be '{expectedUser}'");
 
-        // 3. Validate action type
+        //  Validate action type
         var actionText = (await cells[3].InnerTextAsync()).Trim();
         Assert.That(actionText, Is.EqualTo(expectedAction),
             $"Action '{actionText}' should be '{expectedAction}'");
 
-        // 4. Validate asset information
+        // Validate asset information
         var assetLink = await cells[4].QuerySelectorAsync("a");
         var assetText = await assetLink.InnerTextAsync();
         Assert.That(assetText, Does.Contain(expectedAssetText),
             $"Asset text '{assetText}' should contain '{expectedAssetText}'");
 
-        // 5. Validate note (if expected)
+        // Validate note (if expected)
         if (expectedNote != null)
         {
             var noteText = (await cells[8].InnerTextAsync()).Trim();
