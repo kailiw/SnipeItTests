@@ -62,6 +62,9 @@ dotnet test
 You should see output like:
 
 ```
-Test run for SnipeItTests.dll (.NET 6.0)
-Total tests: 2. Passed: 2. Failed: 0. Skipped: 0.
+NUnit Adapter 5.0.0.0: Test execution complete
+  SnipeItTests test succeeded (19.2s)
+
+Test summary: total: 1, failed: 0, succeeded: 1, skipped: 0, duration: 19.1s
+Build succeeded with 4 warning(s) in 20.6s
 ```
